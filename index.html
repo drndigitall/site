@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DRN DIGITALL - Portfólio de Diogenes Rodrigues. Criação de sites modernos e personalizados.">
+    <title>DRN DIGITALL - Diogenes Rodrigues | Desenvolvedor Front-End</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS Embutido -->
+    <style>
+        /* ===== VARIÁVEIS CSS ===== */
+        :root {
+            /* Cores principais baseadas na logo DRN DIGITALL */
+            --primary-color: #00d9ff;
+            --secondary-color: #0099ff;
+            --accent-color: #00ffcc;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --card-bg: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #707070;
+            
+            /* Gradientes */
+            --gradient-primary: linear-gradient(135deg, #00d9ff 0%, #0099ff 100%);
+            --gradient-secondary: linear-gradient(135deg, #00ffcc 0%, #00d9ff 100%);
+            --gradient-dark: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+            
+            /* Sombras */
+            --shadow-sm: 0 2px 10px rgba(0, 217, 255, 0.1);
+            --shadow-md: 0 4px 20px rgba(0, 217, 255, 0.2);
+            --shadow-lg: 0 8px 40px rgba(0, 217, 255, 0.3);
+            --shadow-glow: 0 0 30px rgba(0, 217, 255, 0.5);
+            
+            /* Transições */
+            --transition-fast: 0.2s ease;
+            --transition-base: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Espaçamentos */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            /* Fontes */
+            --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-code: 'Courier New', monospace;
+        }
+
+        /* Modo Claro */
+        body.light-mode {
+            --dark-bg: #f5f5f5;
+            --darker-bg: #ffffff;
+            --card-bg: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #707070;
+            --gradient-dark: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== RESET E ESTILOS BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ===== CONTAINER ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ===== HEADER ===== */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all var(--transition-base);
+        }
+
+        body.light-mode #header {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        #header.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            transition: transform var(--transition-base);
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: center;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            transition: color var(--transition-base);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width var(--transition-base);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-base);
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: var(--dark-bg);
+            transform: rotate(180deg);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            transition: all var(--transition-base);
+            border-radius: 2px;
+        }
+
+        .mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* ===== SEÇÃO HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+            background: var(--gradient-dark);
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(100px, 100px);
+            }
+            50% {
+                transform: translate(-50px, 200px);
+            }
+            75% {
+                transform: translate(-100px, 50px);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero-title span {
+            display: block;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero-title span:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .hero-title span:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .hero-title span:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .highlight {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            animation: fadeInUp 1s ease 0.8s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 1s backwards;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            border: none;
+            font-size: 1rem;
+            position: relative; /* Adicionado para o efeito hover */
+            overflow: hidden; /* Adicionado para o efeito hover */
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 1s ease;
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-elements {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .float-item {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: var(--card-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            animation: floatAnimation 3s ease-in-out infinite;
+            box-shadow: var(--shadow-glow);
+            z-index: 5; /* Adicionado z-index */
+        }
+
+        .float-item:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .float-item:nth-child(2) {
+            top: 20%;
+            right: 10%;
+            animation-delay: 0.5s;
+        }
+
+        .float-item:nth-child(3) {
+            bottom: 30%;
+            left: 5%;
+            animation-delay: 1s;
+        }
+
+        .float-item:nth-child(4) {
+            bottom: 10%;
+            right: 15%;
+            animation-delay: 1.5s;
+        }
+
+        /* Estilos para a logo centralizada */
+        .hero-logo-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px; /* Ajuste o tamanho conforme sua logo */
+            height: 200px; /* Ajuste o tamanho conforme sua logo */
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: floatAnimation 3.5s ease-in-out infinite; /* Animação opcional */
+            animation-delay: 0.25s;
+        }
+        .logo-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%; /* Deixa redondo */
+            background: var(--card-bg);
+            border: 3px dashed var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-glow);
+            padding: 1rem; /* Espaçamento interno */
+        }
+        /* Fim dos estilos da logo */
+
+        @keyframes floatAnimation {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            animation: fadeIn 2s ease;
+        }
+
+        .mouse {
+            width: 26px;
+            height: 40px;
+            border: 2px solid var(--primary-color);
+            border-radius: 20px;
+            margin: 0 auto 10px;
+            position: relative;
+        }
+
+        .wheel {
+            width: 4px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 2px;
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll 1.5s infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(16px); /* 24px - 8px */
+            }
+        }
+
+        .scroll-indicator p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== SEÇÕES ===== */
+        .section {
+            padding: var(--spacing-xl) 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            font-size: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ===== SOBRE ===== */
+        .sobre-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .sobre-image {
+            position: relative;
+        }
+
+        .image-container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .image-bg {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .image-container img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .image-decoration {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 150px;
+            height: 150px;
+            border: 3px solid var(--primary-color);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .sobre-text h3 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .sobre-text .subtitle {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        .sobre-text .description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.8;
+        }
+
+        .skills {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+            margin: var(--spacing-md) 0;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--card-bg);
+            border-radius: 50px;
+            border: 2px solid var(--primary-color);
+            transition: all var(--transition-base);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .skill-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .sobre-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: var(--spacing-md);
+            background: var(--card-bg);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            transition: all var(--transition-base);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ===== BENEFÍCIOS ===== */
+        .beneficios {
+            background: var(--card-bg);
+        }
+
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .benefit-card {
+            background: var(--dark-bg);
+            padding: var(--spacing-md);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-primary);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2rem;
+            color: white;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .benefit-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ===== PORTFÓLIO ===== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .portfolio-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            transition: all var(--transition-base);
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .portfolio-image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+            background-color: #000; /* Fundo preto para imagens 'contain' */
+        }
+
+        .portfolio-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Alterado de 'cover' para 'contain' */
+            transition: transform var(--transition-slow);
+        }
+
+        .portfolio-card:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 217, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            opacity: 0;
+            transition: opacity var(--transition-base);
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .portfolio-overlay p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* CSS .btn-portfolio removido */
+
+        .portfolio-info {
+            padding: var(--spacing-md);
+        }
+
+        .portfolio-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-tags span {
+            padding: 0.4rem 1rem;
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* ===== SERVIÇOS ===== */
+        .servicos {
+            background: var(--card-bg);
+        }
+
+        .servicos-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: start;
+        }
+
+        .servicos-text h3 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .servicos-text > p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .servicos-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .servico-item {
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: start;
+        }
+
+        .servico-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 0.2rem;
+        }
+
+        .servico-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .servico-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .servicos-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-sm);
+        }
+
+        .service-card {
+            background: var(--dark-bg);
+            padding: var(--spacing-md);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+            text-align: center;
+            transition: all var(--transition-base);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .service-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ===== CONTATO ===== */
+        .contato-content {
+            /* display: grid; */
+            /* grid-template-columns: 1fr 1.5fr; */
+            /* gap: var(--spacing-lg); */
+            display: block; /* Alterado para block para remover grid */
+        }
+
+        .contato-info {
+            max-width: 700px; /* Largura máxima para info */
+            margin: 0 auto; /* Centraliza info */
+        }
+
+        .contato-info h3 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .contato-info > p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .contato-items {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .contato-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md);
+            background: var(--card-bg);
+            border-radius: 15px;
+            border: 2px solid transparent;
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+
+        .contato-item:hover {
+            border-color: var(--primary-color);
+            transform: translateX(10px);
+        }
+
+        .contato-item.whatsapp:hover {
+            border-color: #25D366;
+        }
+
+        .contato-item.instagram:hover {
+            border-color: #E4405F;
+        }
+
+        .contato-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .contato-item.whatsapp i {
+            color: #25D366;
+        }
+
+        .contato-item.instagram i {
+            color: #E4405F;
+        }
+
+        .contato-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .contato-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .contato-form {
+            background: var(--card-bg);
+            padding: var(--spacing-md);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--dark-bg);
+            border: 2px solid rgba(0, 217, 255, 0.2);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            transition: all var(--transition-base);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--darker-bg);
+            padding: var(--spacing-lg) 0 var(--spacing-md);
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-logo img {
+            height: 60px;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-logo p {
+            color: var(--text-secondary);
+        }
+
+        .footer-links h4,
+        .footer-social h4 {
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-color);
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links ul li a {
+            color: var(--text-secondary);
+            transition: color var(--transition-base);
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: var(--card-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            transition: all var(--transition-base);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(0, 217, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* ===== BOTÕES FLUTUANTES ===== */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            z-index: 999;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-base);
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+        }
+
+        .instagram-btn {
+            background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #F77737 100%);
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(0, 217, 255, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 15px rgba(0, 217, 255, 0);
+            }
+        }
+
+        /* ===== BOTÃO VOLTAR AO TOPO ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-base);
+            z-index: 999;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Animação para elementos que entram na tela */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animações do JS */
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: var(--mouse-y, 50%);
+            left: var(--mouse-x, 50%);
+            width: 300px; /* Tamanho fixo */
+            height: 300px; /* Tamanho fixo */
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%) scale(0); /* Começa escalonado para 0 */
+            transition: transform 0.6s; /* Anima apenas o transform */
+        }
+        
+        .btn:hover::before {
+            transform: translate(-50%, -50%) scale(1); /* Escala para 1 no hover */
+        }
+
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-image {
+                order: -1;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .sobre-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .servicos-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contato-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: flex;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px; /* Ajuste para a altura do header */
+                left: -100%;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                padding: var(--spacing-md);
+                transition: left var(--transition-base);
+                box-shadow: var(--shadow-md);
+            }
+
+            body.light-mode .nav-menu {
+                background: rgba(255, 255, 255, 0.98);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .beneficios-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sobre-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .servicos-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-buttons {
+                right: 20px;
+                bottom: 20px;
+            }
+            
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .scroll-top {
+                left: 20px;
+                bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --spacing-lg: 3rem;
+                --spacing-xl: 4rem;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* ===== CSS DO MODAL PROMOCIONAL REMOVIDO ===== */
+
+    </style>
+</head>
+<body>
+
+    <!-- HTML DO MODAL PROMOCIONAL REMOVIDO -->
+
+    <!-- Header Fixo -->
+    <header id="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="logo_rdn.png" alt="DRN DIGITALL Logo" onerror="this.src='https://placehold.co/150x50/1a1a1a/00d9ff?text=DRN+LOGO'">
+            </div>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio" class="nav-link active">Início</a></li>
+                <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                <li><a href="#beneficios" class="nav-link">Benefícios</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
+                <li><a href="#servicos" class="nav-link">Serviços</a></li>
+                <li><a href="#contato" class="nav-link">Contato</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="reveal-text">Transformo ideias em</span>
+                    <span class="highlight reveal-text">sites modernos,</span>
+                    <span class="reveal-text">rápidos e personalizados.</span>
+                </h1>
+                <p class="hero-subtitle">Desenvolvimento Front-End profissional com HTML, CSS e JavaScript</p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">
+                        <span>Ver meus trabalhos</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <!-- Botão de contato alterado para link do WhatsApp -->
+                    <a href="https://wa.me/5582993941434" target="_blank" class="btn btn-secondary">
+                        <span>Entrar em contato</span>
+                        <i class="fab fa-whatsapp"></i> <!-- Ícone alterado -->
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-wrapper">
+                    <div class="floating-elements">
+                        <div class="float-item"><i class="fab fa-html5"></i></div>
+                        <div class="float-item"><i class="fab fa-css3-alt"></i></div>
+                        
+                        <!-- Espaço para Logo Centralizada -->
+                        <div class="hero-logo-center">
+                            <img src="logo_rdn.png" alt="Logo DRN">
+                            <!-- 
+                                Substitua o 'logo-placeholder' pela sua tag <img>
+                                Ex: <img src="caminho/para/sua-logo.png" alt="Logo DRN"> 
+                            -->
+                        </div>
+                        
+                        <div class="float-item"><i class="fab fa-js"></i></div>
+                        <div class="float-item"><i class="fas fa-code"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <p>Role para explorar</p>
+        </div>
+    </section>
+
+    <!-- Sobre Mim -->
+    <section id="sobre" class="sobre section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Conheça mais</span>
+                <h2 class="section-title">Sobre Mim</h2>
+            </div>
+            <div class="sobre-content">
+                <div class="sobre-image">
+                    <div class="image-container">
+                        <div class="image-bg"></div>
+                        <img src="fotonetao.jpeg" alt="Diogenes Rodrigues" onerror="this.src='https://placehold.co/400x500/1a1a1a/00d9ff?text=Diogenes+Rodrigues'">
+                        <div class="image-decoration"></div>
+                    </div>
+                </div>
+                <div class="sobre-text">
+                    <h3>Diogenes Rodrigues</h3>
+                    <p class="subtitle">Desenvolvedor Front-End | DRN DIGITALL</p>
+                    <p class="description">
+                        Sou Diogenes Rodrigues, criador de sites front-end especializados e modernos.
+                        Desenvolvo projetos personalizados que transformam a presença digital dos meus clientes.
+                    </p>
+                    <p class="description">
+                        Ofereço suporte completo em atualizações e manutenção para garantir que seu site 
+                        esteja sempre moderno, funcional e alinhado com as últimas tendências tecnológicas.
+                    </p>
+                    <div class="skills">
+                        <div class="skill-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Responsive</span>
+                        </div>
+                    </div>
+                    <div class="sobre-stats">
+                        <div class="stat-item">
+                            <h4 class="stat-number" data-count="10">80</h4>
+                            <p>Projetos Completos</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 class="stat-number" data-count="10">80</h4>
+                            <p>Clientes Satisfeitos</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4 class="stat-number" data-count="100">100</h4>
+                            <p>% Suporte</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section id="beneficios" class="beneficios section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Por que ter um site?</span>
+                <h2 class="section-title">Benefícios de ter um Site Profissional</h2>
+            </div>
+            <div class="beneficios-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Presença Digital 24/7</h3>
+                    <p>Seu negócio disponível para clientes a qualquer hora, em qualquer lugar do mundo.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Aumento de Credibilidade</h3>
+                    <p>Um site profissional transmite confiança e seriedade para seus clientes.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Atração de Clientes</h3>
+                    <p>Facilita que novos clientes encontrem seus serviços e produtos online.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Suporte Contínuo</h3>
+                    <p>Manutenção e atualizações constantes para manter seu site sempre moderno.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Crescimento do Negócio</h3>
+                    <p>Expanda seu alcance e conquiste novos mercados através da internet.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Design Responsivo</h3>
+                    <p>Sites que funcionam perfeitamente em celulares, tablets e computadores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfólio -->
+    <section id="portfolio" class="portfolio section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Meus Projetos</span>
+                <h2 class="section-title">Trabalhos Realizados</h2>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Card 1: Botão Movido -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="Jdimports.png" alt="Projeto 1" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=E-commerce+Moderno'">
+                        <div class="portfolio-overlay">
+                            <h3>E-commerce Moderno</h3>
+                            <p>Loja virtual completa com carrinho e pedido integrado via WhatsApp</p>
+                            <!-- Botão removido daqui -->
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>E-commerce Moderno</h3>
+                        <div class="portfolio-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <!-- Botão Adicionado Aqui -->
+                        <a href="https://jdimports.site/" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
+                            Ver Site <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Botão Movido -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="vendasthree.png" alt="Projeto 2" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Landing+Page+Corporativa'">
+                        <div class="portfolio-overlay">
+                            <h3>Vitrine Digital Integrada com Shopee</h3>
+                            <p>Mostre seus produtos favoritos no seu próprio site, com links que levam direto à Shopee e aumente seus ganhos com uma vitrine moderna e prática.</p>
+                            <!-- Botão removido daqui -->
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Vitrine Digital Integrada com Shopee</h3>
+                        <div class="portfolio-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <!-- Botão Adicionado Aqui -->
+                        <a href="https://vendasthree.github.io/ofertas/" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
+                            Ver Site <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Botão Movido -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="personaltrainer.png" alt="Projeto 3" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Portf%C3%B3lio+Criativo'">
+                        <div class="portfolio-overlay">
+                            <h3>Personal Trainer Profissional</h3>
+                            <p>Portfólio moderno com treinos, dicas de saúde e contato direto via WhatsApp.Transforme seus resultados com acompanhamento personalizado!</p>
+                            <!-- Botão removido daqui -->
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Personal Trainer Profissional</h3>
+                        <div class="portfolio-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <!-- Botão Adicionado Aqui -->
+                        <a href="https://adailtonsalvador.github.io/personal/" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
+                            Ver Site <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 4: Botão Movido -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="crocantecell.png" alt="Projeto 4" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Site+para+Restaurante'">
+                        <div class="portfolio-overlay">
+                            <h3>Loja de Acessórios Tech</h3>
+                            <p>E-commerce moderno com produtos exclusivos e atendimento direto via WhatsApp. A forma mais rápida e prática de comprar capinhas, fones e muito mais!</p>
+                            <!-- Botão removido daqui -->
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Loja de Acessórios Tech</h3>
+                        <div class="portfolio-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <!-- Botão Adicionado Aqui -->
+                        <a href="https://crocantecell.github.io/store/" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
+                            Ver Site <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 5: Botão Movido -->
+                <div class="portfolio-card">
+                    <div class="portfolio-image">
+                        <img src="acaidosamuka.png" alt="Projeto 5" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Dashboard+Administrativo'">
+                        <div class="portfolio-overlay">
+                            <h3>Açaiteria Online</h3>
+                            <p>Site moderno e atrativo para sua açaiteria, com cardápio digital e pedidos integrados via WhatsApp.O jeito mais fácil e delicioso de pedir seu açaí!</p>
+                            <!-- Botão removido daqui -->
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Açaiteria Online</h3>
+                        <div class="portfolio-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <!-- Botão Adicionado Aqui -->
+                        <a href="https://acaidosamuka.github.io/cardapio/" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
+                            Ver Site <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="servicos" class="servicos section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">O que eu ofereço</span>
+                <h2 class="section-title">Serviços e Suporte</h2>
+            </div>
+            <div class="servicos-content">
+                <div class="servicos-text">
+                    <h3>Desenvolvimento Completo e Suporte Contínuo</h3>
+                    <p>
+                        Ofereço muito mais do que apenas criar seu site. Garanto suporte completo e 
+                        atualizações regulares para manter seu projeto sempre moderno, seguro e funcional.
+                    </p>
+                    <div class="servicos-list">
+                        <div class="servico-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Desenvolvimento Personalizado</h4>
+                                <p>Sites únicos criados especificamente para seu negócio</p>
+                            </div>
+                        </div>
+                        <div class="servico-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Manutenção e Atualizações</h4>
+                                <p>Correções, melhorias e novos recursos quando necessário</p>
+                            </div>
+                        </div>
+                        <div class="servico-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Otimização de Performance</h4>
+                                <p>Sites rápidos e otimizados para melhor experiência</p>
+                            </div>
+                        </div>
+                        <div class="servico-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>Suporte Técnico</h4>
+                                <p>Assistência sempre que você precisar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="servicos-cards">
+                    <div class="service-card">
+                        <i class="fas fa-code"></i>
+                        <h4>Desenvolvimento</h4>
+                        <p>Criação de sites modernos e responsivos</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-tools"></i>
+                        <h4>Manutenção</h4>
+                        <p>Atualizações e correções contínuas</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-rocket"></i>
+                        <h4>Performance</h4>
+                        <p>Otimização para velocidade máxima</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-headset"></i>
+                        <h4>Suporte</h4>
+                        <p>Assistência técnica completa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="contato section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Entre em contato</span>
+                <h2 class="section-title">Vamos criar o site perfeito para o seu negócio!</h2>
+            </div>
+            <div class="contato-content">
+                <div class="contato-info">
+                    <h3>Fale Comigo</h3>
+                    <p>Estou pronto para transformar suas ideias em realidade digital. Entre em contato através dos canais abaixo:</p>
+                    <div class="contato-items">
+                        <a href="https://wa.me/5582993941434" target="_blank" class="contato-item whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <p>Resposta rápida</p>
+                            </div>
+                        </a>
+                        <a href="https://instagram.com/drndigitall" target="_blank" class="contato-item instagram">
+                            <i class="fab fa-instagram"></i>
+                            <div>
+                                <h4>Instagram</h4>
+                                <p>@drndigitall</p>
+                            </div>
+                        </a>
+                        <!-- Item de E-mail removido -->
+                    </div>
+                </div>
+                <!-- Formulário de Contato Removido -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo_rdn.png" alt="DRN DIGITALL Logo" onerror="this.src='https://placehold.co/150x50/1a1a1a/00d9ff?text=DRN+LOGO'">
+                    <p>Transformando ideias em experiências digitais</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#portfolio">Portfólio</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="https://wa.me/5582993941434" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com/drndigitall" target="_blank"><i class="fab fa-instagram"></i></a>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 DRN DIGITALL - Todos os direitos reservados | Desenvolvido por Diogenes Rodrigues</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botões Flutuantes -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/5582993941434" target="_blank" class="floating-btn whatsapp-btn" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://instagram.com/drndigitall" target="_blank" class="floating-btn instagram-btn" title="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <!-- Botão Voltar ao Topo -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript Embutido -->
+    <script>
+        // ... existing code ... */
+        function createParticle(container) {
+            // ... existing code ... */
+        }
+
+        // ===== NAVEGAÇÃO =====
+        function initNavigation() {
+            const header = document.getElementById('header');
+            // ... existing code ... */
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+        // ... existing code ... */
+                    }
+                });
+            });
+            
+            // Substituído o listener de scroll por IntersectionObserver (mais performance)
+            const sections = document.querySelectorAll('.section, .hero');
+            const observerOptions = {
+                rootMargin: `-${header.offsetHeight}px 0px -40% 0px`, // Ajusta o trigger para o topo da tela
+                threshold: 0
+            };
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => sectionObserver.observe(section));
+        }
+
+        // ===== TEMA CLARO/ESCURO =====
+        // ... existing code ... */
+            });
+        }
+
+        // ===== EFEITOS DE SCROLL =====
+        function initScrollEffects() {
+            const observerOptions = {
+        // ... existing code ... */
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+        // ... existing code ... */
+            }, observerOptions);
+            
+            const revealElements = document.querySelectorAll('.benefit-card, .portfolio-card, .service-card, .contato-item');
+        // ... existing code ... */
+                observer.observe(el);
+            });
+            
+            // Efeito de parallax removido - Causa comum de lag em scroll
+            /*
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.image-wrapper, .floating-elements');
+                
+                parallaxElements.forEach(el => {
+                    const speed = el.dataset.speed || CONFIG.parallaxSpeed;
+                    el.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+            */
+        }
+
+        // ===== CONTADORES ANIMADOS =====
+        // ... existing code ... */
+    </script>
+</body>
+</html>
+
