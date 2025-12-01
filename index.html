@@ -350,8 +350,8 @@
             transition: all var(--transition-base);
             border: none;
             font-size: 1rem;
-            position: relative; /* Adicionado para o efeito hover */
-            overflow: hidden; /* Adicionado para o efeito hover */
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
@@ -410,7 +410,7 @@
             color: var(--primary-color);
             animation: floatAnimation 3s ease-in-out infinite;
             box-shadow: var(--shadow-glow);
-            z-index: 5; /* Adicionado z-index */
+            z-index: 5;
         }
 
         .float-item:nth-child(1) {
@@ -443,19 +443,26 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 200px; /* Ajuste o tamanho conforme sua logo */
-            height: 200px; /* Ajuste o tamanho conforme sua logo */
+            width: 200px;
+            height: 200px;
             z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: floatAnimation 3.5s ease-in-out infinite; /* Animação opcional */
+            animation: floatAnimation 3.5s ease-in-out infinite;
             animation-delay: 0.25s;
         }
+        
+        .hero-logo-center img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
         .logo-placeholder {
             width: 100%;
             height: 100%;
-            border-radius: 50%; /* Deixa redondo */
+            border-radius: 50%;
             background: var(--card-bg);
             border: 3px dashed var(--primary-color);
             display: flex;
@@ -466,9 +473,8 @@
             font-weight: 600;
             font-size: 1.2rem;
             box-shadow: var(--shadow-glow);
-            padding: 1rem; /* Espaçamento interno */
+            padding: 1rem;
         }
-        /* Fim dos estilos da logo */
 
         @keyframes floatAnimation {
             0%, 100% {
@@ -516,7 +522,7 @@
             }
             100% {
                 opacity: 0;
-                transform: translateX(-50%) translateY(16px); /* 24px - 8px */
+                transform: translateX(-50%) translateY(16px);
             }
         }
 
@@ -756,13 +762,13 @@
             position: relative;
             overflow: hidden;
             height: 250px;
-            background-color: #000; /* Fundo preto para imagens 'contain' */
+            background-color: #000;
         }
 
         .portfolio-image img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Alterado de 'cover' para 'contain' */
+            object-fit: contain;
             transition: transform var(--transition-slow);
         }
 
@@ -800,8 +806,6 @@
         .portfolio-overlay p {
             color: rgba(255, 255, 255, 0.9);
         }
-
-        /* CSS .btn-portfolio removido */
 
         .portfolio-info {
             padding: var(--spacing-md);
@@ -916,15 +920,12 @@
 
         /* ===== CONTATO ===== */
         .contato-content {
-            /* display: grid; */
-            /* grid-template-columns: 1fr 1.5fr; */
-            /* gap: var(--spacing-lg); */
-            display: block; /* Alterado para block para remover grid */
+            display: block;
         }
 
         .contato-info {
-            max-width: 700px; /* Largura máxima para info */
-            margin: 0 auto; /* Centraliza info */
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         .contato-info h3 {
@@ -1219,7 +1220,6 @@
             }
         }
 
-        /* Animação para elementos que entram na tela */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -1231,7 +1231,6 @@
             transform: translateY(0);
         }
 
-        /* Animações do JS */
         @keyframes slideInRight {
             from {
                 transform: translateX(100%);
@@ -1259,18 +1258,17 @@
             position: absolute;
             top: var(--mouse-y, 50%);
             left: var(--mouse-x, 50%);
-            width: 300px; /* Tamanho fixo */
-            height: 300px; /* Tamanho fixo */
+            width: 300px;
+            height: 300px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%) scale(0); /* Começa escalonado para 0 */
-            transition: transform 0.6s; /* Anima apenas o transform */
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.6s;
         }
         
         .btn:hover::before {
-            transform: translate(-50%, -50%) scale(1); /* Escala para 1 no hover */
+            transform: translate(-50%, -50%) scale(1);
         }
-
 
         /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 1024px) {
@@ -1316,7 +1314,7 @@
             
             .nav-menu {
                 position: fixed;
-                top: 70px; /* Ajuste para a altura do header */
+                top: 70px;
                 left: -100%;
                 width: 100%;
                 background: rgba(10, 10, 10, 0.98);
@@ -1399,13 +1397,9 @@
             }
         }
 
-        /* ===== CSS DO MODAL PROMOCIONAL REMOVIDO ===== */
-
     </style>
 </head>
 <body>
-
-    <!-- HTML DO MODAL PROMOCIONAL REMOVIDO -->
 
     <!-- Header Fixo -->
     <header id="header">
@@ -1448,10 +1442,9 @@
                         <span>Ver meus trabalhos</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
-                    <!-- Botão de contato alterado para link do WhatsApp -->
                     <a href="https://wa.me/5582993941434" target="_blank" class="btn btn-secondary">
                         <span>Entrar em contato</span>
-                        <i class="fab fa-whatsapp"></i> <!-- Ícone alterado -->
+                        <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
             </div>
@@ -1461,13 +1454,8 @@
                         <div class="float-item"><i class="fab fa-html5"></i></div>
                         <div class="float-item"><i class="fab fa-css3-alt"></i></div>
                         
-                        <!-- Espaço para Logo Centralizada -->
                         <div class="hero-logo-center">
                             <img src="logo_rdn.png" alt="Logo DRN">
-                            <!-- 
-                                Substitua o 'logo-placeholder' pela sua tag <img>
-                                Ex: <img src="caminho/para/sua-logo.png" alt="Logo DRN"> 
-                            -->
                         </div>
                         
                         <div class="float-item"><i class="fab fa-js"></i></div>
@@ -1609,14 +1597,13 @@
                 <h2 class="section-title">Trabalhos Realizados</h2>
             </div>
             <div class="portfolio-grid">
-                <!-- Card 1: Botão Movido -->
+                <!-- Card 1: JD Imports -->
                 <div class="portfolio-card">
                     <div class="portfolio-image">
                         <img src="Jdimports.png" alt="Projeto 1" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=E-commerce+Moderno'">
                         <div class="portfolio-overlay">
                             <h3>E-commerce Moderno</h3>
                             <p>Loja virtual completa com carrinho e pedido integrado via WhatsApp</p>
-                            <!-- Botão removido daqui -->
                         </div>
                     </div>
                     <div class="portfolio-info">
@@ -1626,21 +1613,19 @@
                             <span>CSS</span>
                             <span>JavaScript</span>
                         </div>
-                        <!-- Botão Adicionado Aqui -->
                         <a href="https://jdimports.site/" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
                             Ver Site <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Card 2: Botão Movido -->
+                <!-- Card 2: Vendas Three -->
                 <div class="portfolio-card">
                     <div class="portfolio-image">
                         <img src="vendasthree.png" alt="Projeto 2" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Landing+Page+Corporativa'">
                         <div class="portfolio-overlay">
                             <h3>Vitrine Digital Integrada com Shopee</h3>
                             <p>Mostre seus produtos favoritos no seu próprio site, com links que levam direto à Shopee e aumente seus ganhos com uma vitrine moderna e prática.</p>
-                            <!-- Botão removido daqui -->
                         </div>
                     </div>
                     <div class="portfolio-info">
@@ -1650,21 +1635,19 @@
                             <span>CSS</span>
                             <span>JavaScript</span>
                         </div>
-                        <!-- Botão Adicionado Aqui -->
                         <a href="https://vendasthree.github.io/ofertas/" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
                             Ver Site <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Card 3: Botão Movido -->
+                <!-- Card 3: Personal Trainer -->
                 <div class="portfolio-card">
                     <div class="portfolio-image">
                         <img src="personaltrainer.png" alt="Projeto 3" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Portf%C3%B3lio+Criativo'">
                         <div class="portfolio-overlay">
                             <h3>Personal Trainer Profissional</h3>
                             <p>Portfólio moderno com treinos, dicas de saúde e contato direto via WhatsApp.Transforme seus resultados com acompanhamento personalizado!</p>
-                            <!-- Botão removido daqui -->
                         </div>
                     </div>
                     <div class="portfolio-info">
@@ -1674,21 +1657,19 @@
                             <span>CSS</span>
                             <span>JavaScript</span>
                         </div>
-                        <!-- Botão Adicionado Aqui -->
                         <a href="https://adailtonsalvador.github.io/personal/" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
                             Ver Site <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Card 4: Botão Movido -->
+                <!-- Card 4: Crocante Cell -->
                 <div class="portfolio-card">
                     <div class="portfolio-image">
                         <img src="crocantecell.png" alt="Projeto 4" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Site+para+Restaurante'">
                         <div class="portfolio-overlay">
                             <h3>Loja de Acessórios Tech</h3>
                             <p>E-commerce moderno com produtos exclusivos e atendimento direto via WhatsApp. A forma mais rápida e prática de comprar capinhas, fones e muito mais!</p>
-                            <!-- Botão removido daqui -->
                         </div>
                     </div>
                     <div class="portfolio-info">
@@ -1698,21 +1679,19 @@
                             <span>CSS</span>
                             <span>JavaScript</span>
                         </div>
-                        <!-- Botão Adicionado Aqui -->
                         <a href="https://crocantecell.github.io/store/" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
                             Ver Site <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Card 5: Botão Movido -->
+                <!-- Card 5: Açaí do Samuka -->
                 <div class="portfolio-card">
                     <div class="portfolio-image">
                         <img src="acaidosamuka.png" alt="Projeto 5" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Dashboard+Administrativo'">
                         <div class="portfolio-overlay">
                             <h3>Açaiteria Online</h3>
                             <p>Site moderno e atrativo para sua açaiteria, com cardápio digital e pedidos integrados via WhatsApp.O jeito mais fácil e delicioso de pedir seu açaí!</p>
-                            <!-- Botão removido daqui -->
                         </div>
                     </div>
                     <div class="portfolio-info">
@@ -1722,12 +1701,130 @@
                             <span>CSS</span>
                             <span>JavaScript</span>
                         </div>
-                        <!-- Botão Adicionado Aqui -->
                         <a href="https://acaidosamuka.github.io/cardapio/" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
                             Ver Site <i class="fas fa-external-link-alt"></i>
                         </a>
                     </div>
                 </div>
+
+                <!-- ========== CARDS EXTRAS OCULTOS (PRONTOS PARA NOVOS PROJETOS) ========== -->
+                
+                <!-- Card Extra 6 -->
+<div class="portfolio-card" data-project="6">
+    <div class="portfolio-image">
+        <img src="paladardelivery.png" alt="Projeto 6" 
+             onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Paladar+Delivery'">
+        <div class="portfolio-overlay">
+            <h3>Delivery de Almoço & Jantar</h3>
+            <p>Site moderno para Delivery de Almoço & Jantar — rápido, intuitivo e totalmente responsivo.</p>
+        </div>
+    </div>
+    <div class="portfolio-info">
+        <h3>Delivery de Almoço & Jantar</h3>
+        <div class="portfolio-tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+        </div>
+
+        <!-- BOTÃO CORRIGIDO -->
+        <a href="https://paladardelivery.github.io/cardapio/" 
+           target="_blank" 
+           class="btn btn-primary" 
+           style="margin-top: var(--spacing-sm);">
+            Ver Site <i class="fas fa-external-link-alt"></i>
+        </a>
+    </div>
+</div>
+
+                <!-- Card Extra 7 - OCULTO -->
+                <div class="portfolio-card" style="display: none;" data-project="7">
+                    <div class="portfolio-image">
+                        <img src="projeto7.png" alt="Projeto 7" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Novo+Projeto+7'">
+                        <div class="portfolio-overlay">
+                            <h3>Título do Projeto 7</h3>
+                            <p>Descrição breve do projeto 7 aqui.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Título do Projeto 7</h3>
+                        <div class="portfolio-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <a href="#" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
+                            Ver Site <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card Extra 8 - OCULTO -->
+                <div class="portfolio-card" style="display: none;" data-project="8">
+                    <div class="portfolio-image">
+                        <img src="projeto8.png" alt="Projeto 8" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Novo+Projeto+8'">
+                        <div class="portfolio-overlay">
+                            <h3>Título do Projeto 8</h3>
+                            <p>Descrição breve do projeto 8 aqui.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Título do Projeto 8</h3>
+                        <div class="portfolio-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <a href="#" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
+                            Ver Site <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card Extra 9 - OCULTO -->
+                <div class="portfolio-card" style="display: none;" data-project="9">
+                    <div class="portfolio-image">
+                        <img src="projeto9.png" alt="Projeto 9" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Novo+Projeto+9'">
+                        <div class="portfolio-overlay">
+                            <h3>Título do Projeto 9</h3>
+                            <p>Descrição breve do projeto 9 aqui.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Título do Projeto 9</h3>
+                        <div class="portfolio-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <a href="#" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
+                            Ver Site <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card Extra 10 - OCULTO -->
+                <div class="portfolio-card" style="display: none;" data-project="10">
+                    <div class="portfolio-image">
+                        <img src="projeto10.png" alt="Projeto 10" onerror="this.src='https://placehold.co/600x400/1a1a1a/00d9ff?text=Novo+Projeto+10'">
+                        <div class="portfolio-overlay">
+                            <h3>Título do Projeto 10</h3>
+                            <p>Descrição breve do projeto 10 aqui.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Título do Projeto 10</h3>
+                        <div class="portfolio-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <a href="#" target="_blank" class="btn btn-primary" style="margin-top: var(--spacing-sm);">
+                            Ver Site <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -1829,10 +1926,8 @@
                                 <p>@drndigitall</p>
                             </div>
                         </a>
-                        <!-- Item de E-mail removido -->
                     </div>
                 </div>
-                <!-- Formulário de Contato Removido -->
             </div>
         </div>
     </section>
@@ -1859,8 +1954,6 @@
                     <div class="social-links">
                         <a href="https://wa.me/5582993941434" target="_blank"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://instagram.com/drndigitall" target="_blank"><i class="fab fa-instagram"></i></a>
-                        
-                        
                     </div>
                 </div>
             </div>
@@ -1887,27 +1980,81 @@
 
     <!-- JavaScript Embutido -->
     <script>
-        // ... existing code ... */
+        // ===== CONFIGURAÇÕES =====
+        const CONFIG = {
+            particlesCount: 50,
+            scrollThreshold: 100,
+            animationSpeed: 0.02
+        };
+
+        // ===== INICIALIZAÇÃO =====
+        document.addEventListener('DOMContentLoaded', () => {
+            initParticles();
+            initNavigation();
+            initThemeToggle();
+            initScrollEffects();
+            initMobileMenu();
+        });
+
+        // ===== PARTÍCULAS DE FUNDO =====
+        function initParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            for (let i = 0; i < CONFIG.particlesCount; i++) {
+                createParticle(particlesContainer);
+            }
+        }
+
         function createParticle(container) {
-            // ... existing code ... */
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            const size = Math.random() * 5 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            particle.style.opacity = Math.random() * 0.5 + 0.2;
+            particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            
+            container.appendChild(particle);
         }
 
         // ===== NAVEGAÇÃO =====
         function initNavigation() {
             const header = document.getElementById('header');
-            // ... existing code ... */
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Smooth scroll
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-        // ... existing code ... */
+                    const targetId = link.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = targetSection.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Fechar menu mobile se estiver aberto
+                        const navMenu = document.getElementById('navMenu');
+                        const mobileToggle = document.getElementById('mobileToggle');
+                        navMenu.classList.remove('active');
+                        mobileToggle.classList.remove('active');
                     }
                 });
             });
             
-            // Substituído o listener de scroll por IntersectionObserver (mais performance)
+            // Header scroll effect e active nav
             const sections = document.querySelectorAll('.section, .hero');
             const observerOptions = {
-                rootMargin: `-${header.offsetHeight}px 0px -40% 0px`, // Ajusta o trigger para o topo da tela
+                rootMargin: `-${header.offsetHeight}px 0px -40% 0px`,
                 threshold: 0
             };
 
@@ -1926,45 +2073,113 @@
             }, observerOptions);
 
             sections.forEach(section => sectionObserver.observe(section));
+            
+            // Header background on scroll
+            let lastScroll = 0;
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll > CONFIG.scrollThreshold) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                lastScroll = currentScroll;
+            });
+        }
+
+        // ===== MENU MOBILE =====
+        function initMobileMenu() {
+            const mobileToggle = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            mobileToggle.addEventListener('click', () => {
+                mobileToggle.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
         }
 
         // ===== TEMA CLARO/ESCURO =====
-        // ... existing code ... */
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const icon = themeToggle.querySelector('i');
+            
+            // Verificar tema salvo
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                body.classList.add('light-mode');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('light-mode');
+                
+                if (body.classList.contains('light-mode')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'dark');
+                }
             });
         }
 
         // ===== EFEITOS DE SCROLL =====
         function initScrollEffects() {
             const observerOptions = {
-        // ... existing code ... */
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
             };
             
             const observer = new IntersectionObserver((entries) => {
-        // ... existing code ... */
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
             }, observerOptions);
             
             const revealElements = document.querySelectorAll('.benefit-card, .portfolio-card, .service-card, .contato-item');
-        // ... existing code ... */
+            revealElements.forEach(el => {
+                el.classList.add('reveal');
                 observer.observe(el);
             });
             
-            // Efeito de parallax removido - Causa comum de lag em scroll
-            /*
+            // Botão scroll to top
+            const scrollTopBtn = document.getElementById('scrollTop');
+            
             window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const parallaxElements = document.querySelectorAll('.image-wrapper, .floating-elements');
-                
-                parallaxElements.forEach(el => {
-                    const speed = el.dataset.speed || CONFIG.parallaxSpeed;
-                    el.style.transform = `translateY(${scrolled * speed}px)`;
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
                 });
             });
-            */
         }
 
-        // ===== CONTADORES ANIMADOS =====
-        // ... existing code ... */
+        // ===== EFEITO HOVER NOS BOTÕES =====
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                btn.style.setProperty('--mouse-x', `${x}%`);
+                btn.style.setProperty('--mouse-y', `${y}%`);
+            });
+        });
     </script>
 </body>
 </html>
-
